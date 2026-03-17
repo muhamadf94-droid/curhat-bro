@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Curhat Bro — Tempat Cerita, Tanpa Dihakimi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:        #161210;
+    --bg2:       #1e1812;
+    --bg3:       #252018;
+    --gold:      #c8923a;
+    --gold-lt:   #e8b86d;
+    --gold-dim:  rgba(200,146,58,0.18);
+    --gold-line: rgba(200,146,58,0.14);
+    --text:      #e8ddd0;
+    --text2:     rgba(232,221,208,0.55);
+    --text3:     rgba(232,221,208,0.28);
+    --radius:    14px;
+  }
+
+  html, body { height: 100%; overflow: hidden; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ═══════════════════════════════
+     LANDING PAGE
+  ═══════════════════════════════ */
+  #landing {
+    flex: 1;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 20px 40px;
+    background: var(--bg);
+    position: relative;
+  }
+
+  #landing::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(200,146,58,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .land-nav {
+    width: 100%; max-width: 480px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 0 0;
+    position: relative; z-index: 1;
+  }
+
+  .land-logo {
+    display: flex; align-items: center; gap: 9px;
+  }
+  .land-logo-icon {
+    width: 34px; height: 34px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+  .land-logo-name {
+    font-family: 'Lora', serif;
+    font-size: 15px; font-weight: 600;
+    color: var(--text);
+    letter-spacing: 0.2px;
+  }
+
+  .land-badge {
+    font-size: 11px;
+    color: var(--text3);
+    border: 1px solid var(--gold-line);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .land-hero {
+    width: 100%; max-width: 480px;
+    text-align: center;
+    margin-top: 52px;
+    position: relative; z-index: 1;
+  }
+
+  .land-eyebrow {
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .land-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(26px, 7vw, 36px);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .land-title em {
+    font-style: italic;
+    color: var(--gold-lt);
+  }
+
+  .land-desc {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 340px;
+    margin: 0 auto 32px;
+  }
+
+  .land-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+    color: #1a1208;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px; font-weight: 600;
+    padding: 13px 28px;
+    border-radius: 50px;
+    border: none; cursor: pointer;
+    transition: opacity 0.2s, transform 0.15s;
+    text-decoration: none;
+  }
+  .land-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+  .land-cta:active { transform: scale(0.97); }
+
+  .land-divider {
+    width: 100%; max-width: 480px;
+    border: none; border-top: 1px solid var(--gold-line);
+    margin: 44px 0 36px;
+    position: relative; z-index: 1;
+  }
+
+  .land-topics-label {
+    font-size: 11px;
+    color: var(--text3);
+    text-align: center;
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative; z-index: 1;
+  }
+
+  .land-topics {
+    width: 100%; max-width: 480px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    position: relative; z-index: 1;
+  }
+
+  .topic-card {
+    background: var(--bg2);
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius);
+    padding: 16px 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .topic-card:hover {
+    border-color: rgba(200,146,58,0.35);
+    background: var(--bg3);
+    transform: translateY(-2px);
+  }
+  .topic-card:active { transform: scale(0.97); }
+
+  .topic-icon { font-size: 22px; margin-bottom: 7px; }
+  .topic-name {
+    font-size: 13px; font-weight: 500;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .topic-desc {
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.4;
+  }
+
+  .land-footer {
+    width: 100%; max-width: 480px;
+    text-align: center;
+    margin-top: 32px;
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.7;
+    position: relative; z-index: 1;
+  }
+
+  /* ═══════════════════════════════
+     CHAT PAGE
+  ═══════════════════════════════ */
+  #chat-page {
+    display: none;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+  }
+  #chat-page.active { display: flex; }
+
+  .chat-header {
+    padding: 12px 16px;
+    display: flex; align-items: center; gap: 10px;
+    background: var(--bg);
+    border-bottom: 1px solid var(--gold-line);
+    flex-shrink: 0;
+  }
+
+  .back-btn {
+    width: 30px; height: 30px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--gold-line);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: var(--text2);
+    font-size: 14px; transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .back-btn:hover { background: rgba(200,146,58,0.1); color: var(--gold-lt); }
+
+  .chat-header-info { flex: 1; }
+  .chat-header-name {
+    font-family: 'Lora', serif;
+    font-size: 14px; font-weight: 500;
+    color: var(--text);
+  }
+  .chat-header-sub {
+    font-size: 10.5px;
+    color: var(--text3);
+    margin-top: 1px;
+  }
+
+  .topic-pill {
+    font-size: 10.5px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(200,146,58,0.2);
+    color: var(--gold-lt);
+    padding: 3px 10px;
+    border-radius: 20px;
+  }
+
+  .online-dot {
+    width: 7px; height: 7px;
+    background: #7ec87e;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #7ec87e88;
+    animation: blink 2.5s infinite;
+    flex-shrink: 0;
+  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  #messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 14px;
+    display: flex; flex-direction: column;
+    gap: 12px;
+    scroll-behavior: smooth;
+  }
+  #messages::-webkit-scrollbar { width: 3px; }
+  #messages::-webkit-scrollbar-thumb { background: rgba(200,146,58,0.12); border-radius: 2px; }
+
+  .msg {
+    display: flex; gap: 8px;
+    max-width: 85%;
+    animation: rise 0.28s ease;
+  }
+  @keyframes rise { from{opacity:0;transform:translateY(5px)} to{opacity:1;transform:translateY(0)} }
+
+  .msg.user { align-self: flex-end; flex-direction: row-reverse; }
+
+  .av {
+    width: 27px; height: 27px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .av.ai { background: linear-gradient(135deg, var(--gold), var(--gold-lt)); color: #1a1208; }
+  .av.usr { background: rgba(255,255,255,0.07); color: rgba(200,170,110,0.8); font-size: 10px; font-weight: 600; }
+
+  .bubble {
+    padding: 10px 14px;
+    border-radius: 15px;
+    font-size: 13.5px; line-height: 1.65;
+    word-wrap: break-word; max-width: 100%;
+  }
+  .msg.ai .bubble {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(200,146,58,0.1);
+    border-bottom-left-radius: 4px;
+    color: #d4c9bc;
+  }
+  .msg.user .bubble {
+    background: linear-gradient(135deg, #7a4f18, var(--gold));
+    border-bottom-right-radius: 4px;
+    color: #fff8ee;
+  }
+
+  .typing-bub {
+    display: flex; gap: 4px; align-items: center;
+    padding: 12px 14px;
+  }
+  .dot {
+    width: 5px; height: 5px;
+    background: rgba(200,146,58,0.45);
+    border-radius: 50%;
+    animation: bob 1.4s infinite ease-in-out;
+  }
+  .dot:nth-child(2){animation-delay:.18s}
+  .dot:nth-child(3){animation-delay:.36s}
+  @keyframes bob { 0%,60%,100%{transform:translateY(0)} 30%{transform:translateY(-5px)} }
+
+  .date-sep {
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--text3);
+    font-style: italic;
+    margin: 4px 0;
+  }
+
+  #input-bar {
+    padding: 10px 14px 14px;
+    background: var(--bg);
+    border-top: 1px solid var(--gold-line);
+    flex-shrink: 0;
+  }
+
+  .input-wrap {
+    display: flex; gap: 8px; align-items: flex-end;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,146,58,0.14);
+    border-radius: 13px;
+    padding: 9px 11px;
+    transition: border-color 0.2s;
+  }
+  .input-wrap:focus-within { border-color: rgba(200,146,58,0.32); }
+
+  #inp {
+    flex: 1; background: transparent; border: none; outline: none;
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13.5px; resize: none;
+    max-height: 100px; line-height: 1.5;
+  }
+  #inp::placeholder { color: var(--text3); }
+
+  #send-btn {
+    width: 32px; height: 32px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-lt));
+    border: none; border-radius: 8px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: opacity 0.2s, transform 0.1s;
+  }
+  #send-btn:hover { opacity: 0.88; }
+  #send-btn:active { transform: scale(0.93); }
+  #send-btn:disabled { background: rgba(255,255,255,0.06); cursor: not-allowed; }
+  #send-btn svg { width: 14px; height: 14px; fill: #1a1208; }
+
+  .input-hint {
+    text-align: center; font-size: 10px;
+    color: var(--text3); margin-top: 7px;
+  }
+
+  /* ═══════════════════════════════
+     TOPIC SELECTOR OVERLAY
+  ═══════════════════════════════ */
+  #topic-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(16,12,8,0.92);
+    z-index: 100;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 0;
+  }
+  #topic-overlay.active { display: flex; }
+
+  .topic-sheet {
+    width: 100%; max-width: 480px;
+    background: var(--bg2);
+    border: 1px solid var(--gold-line);
+    border-radius: 20px 20px 0 0;
+    padding: 20px 18px 32px;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp { from{transform:translateY(60px);opacity:0} to{transform:translateY(0);opacity:1} }
+
+  .sheet-handle {
+    width: 36px; height: 3px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    margin: 0 auto 18px;
+  }
+  .sheet-title {
+    font-family: 'Lora', serif;
+    font-size: 16px; font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .sheet-sub {
+    font-size: 12px; color: var(--text3);
+    margin-bottom: 18px;
+  }
+
+  .sheet-topics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+    margin-bottom: 16px;
+  }
+
+  .sheet-topic {
+    background: var(--bg3);
+    border: 1px solid var(--gold-line);
+    border-radius: 12px;
+    padding: 14px 12px;
+    cursor: pointer;
+    transition: all 0.18s;
+    text-align: left;
+  }
+  .sheet-topic:hover {
+    border-color: rgba(200,146,58,0.35);
+    background: rgba(200,146,58,0.08);
+  }
+  .sheet-topic.selected {
+    border-color: var(--gold);
+    background: var(--gold-dim);
+  }
+  .st-icon { font-size: 20px; margin-bottom: 5px; }
+  .st-name { font-size: 12.5px; font-weight: 500; color: var(--text); }
+  .st-desc { font-size: 10.5px; color: var(--text3); margin-top: 2px; line-height: 1.3; }
+
+  .sheet-skip {
+    width: 100%; padding: 11px;
+    background: transparent;
+    border: 1px solid var(--gold-line);
+    border-radius: 10px;
+    color: var(--text2);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px; cursor: pointer;
+    transition: all 0.18s;
+  }
+  .sheet-skip:hover { background: rgba(255,255,255,0.04); }
+
+  /* Scrollbar for landing */
+  #landing::-webkit-scrollbar { width: 3px; }
+  #landing::-webkit-scrollbar-thumb { background: rgba(200,146,58,0.1); border-radius: 2px; }
+
+  /* Mobile tweaks */
+  @media (max-width: 420px) {
+    .land-title { font-size: 24px; }
+    .land-topics { grid-template-columns: 1fr 1fr; }
+    .topic-card { padding: 13px 11px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════ LANDING ══════════════════ -->
+<div id="landing">
+
+  <nav class="land-nav">
+    <div class="land-logo">
+      <div class="land-logo-icon">🌿</div>
+      <div class="land-logo-name">Curhat Bro</div>
+    </div>
+    <div class="land-badge">Private & Aman</div>
+  </nav>
+
+  <div class="land-hero">
+    <div class="land-eyebrow">Ruang cerita untuk pria</div>
+    <h1 class="land-title">
+      Ada yang mau<br>kamu ceritain,<br><em>tapi nggak tau ke siapa?</em>
+    </h1>
+    <p class="land-desc">
+      Di sini kamu bisa jujur — soal kerjaan, tekanan hidup, atau apapun yang berat kamu tanggung sendiri. Nggak ada yang menghakimi. Nggak ada yang buru-buru.
+    </p>
+    <button class="land-cta" onclick="startChat()">
+      Mulai Cerita &rarr;
+    </button>
+  </div>
+
+  <hr class="land-divider">
+
+  <div class="land-topics-label">Kamu bisa cerita tentang</div>
+
+  <div class="land-topics">
+    <div class="topic-card" onclick="startWithTopic('💼','Pekerjaan','Tekanan kerja, karir, atasan')">
+      <div class="topic-icon">💼</div>
+      <div class="topic-name">Pekerjaan</div>
+      <div class="topic-desc">Tekanan, karir, atasan, rekan kerja</div>
+    </div>
+    <div class="topic-card" onclick="startWithTopic('🏠','Keluarga','Hubungan di rumah')">
+      <div class="topic-icon">🏠</div>
+      <div class="topic-name">Keluarga</div>
+      <div class="topic-desc">Hubungan rumah tangga & tanggung jawab</div>
+    </div>
+    <div class="topic-card" onclick="startWithTopic('💰','Finansial','Soal uang & ekonomi')">
+      <div class="topic-icon">💰</div>
+      <div class="topic-name">Finansial</div>
+      <div class="topic-desc">Tekanan ekonomi & kekhawatiran soal uang</div>
+    </div>
+    <div class="topic-card" onclick="startWithTopic('🧠','Mental','Pikiran & perasaan')">
+      <div class="topic-icon">🧠</div>
+      <div class="topic-name">Mental</div>
+      <div class="topic-desc">Kelelahan, stres, atau perasaan yang berat</div>
+    </div>
+    <div class="topic-card" onclick="startWithTopic('👥','Pertemanan','Lingkaran sosial')">
+      <div class="topic-icon">👥</div>
+      <div class="topic-name">Pertemanan</div>
+      <div class="topic-desc">Hubungan sosial & rasa kesepian</div>
+    </div>
+    <div class="topic-card" onclick="startWithTopic('💬','Lainnya','Apapun yang ada di pikiran')">
+      <div class="topic-icon">💬</div>
+      <div class="topic-name">Lainnya</div>
+      <div class="topic-desc">Apapun yang ada di pikiranmu</div>
+    </div>
+  </div>
+
+  <div class="land-footer">
+    🔒 Percakapan tersimpan di perangkatmu saja.<br>Tidak dikirim atau dibagikan ke siapapun.
+  </div>
+
+</div>
+
+<!-- ══════════════════ TOPIC SHEET ══════════════════ -->
+<div id="topic-overlay">
+  <div class="topic-sheet">
+    <div class="sheet-handle"></div>
+    <div class="sheet-title">Mau cerita soal apa dulu?</div>
+    <div class="sheet-sub">Pilih satu topik biar aku bisa lebih siap nemenin kamu</div>
+    <div class="sheet-topics">
+      <button class="sheet-topic" onclick="selectTopic(this,'💼','Pekerjaan')">
+        <div class="st-icon">💼</div>
+        <div class="st-name">Pekerjaan</div>
+        <div class="st-desc">Karir, atasan, tekanan kerja</div>
+      </button>
+      <button class="sheet-topic" onclick="selectTopic(this,'🏠','Keluarga')">
+        <div class="st-icon">🏠</div>
+        <div class="st-name">Keluarga</div>
+        <div class="st-desc">Rumah tangga & tanggung jawab</div>
+      </button>
+      <button class="sheet-topic" onclick="selectTopic(this,'💰','Finansial')">
+        <div class="st-icon">💰</div>
+        <div class="st-name">Finansial</div>
+        <div class="st-desc">Tekanan ekonomi & uang</div>
+      </button>
+      <button class="sheet-topic" onclick="selectTopic(this,'🧠','Mental')">
+        <div class="st-icon">🧠</div>
+        <div class="st-name">Mental</div>
+        <div class="st-desc">Stres, kelelahan, perasaan berat</div>
+      </button>
+      <button class="sheet-topic" onclick="selectTopic(this,'👥','Pertemanan')">
+        <div class="st-icon">👥</div>
+        <div class="st-name">Pertemanan</div>
+        <div class="st-desc">Sosial & rasa kesepian</div>
+      </button>
+      <button class="sheet-topic" onclick="selectTopic(this,'💬','Lainnya')">
+        <div class="st-icon">💬</div>
+        <div class="st-name">Lainnya</div>
+        <div class="st-desc">Apapun di pikiranmu</div>
+      </button>
+    </div>
+    <button class="sheet-skip" onclick="skipTopic()">Langsung cerita aja</button>
+  </div>
+</div>
+
+<!-- ══════════════════ CHAT PAGE ══════════════════ -->
+<div id="chat-page">
+  <div class="chat-header">
+    <div class="back-btn" onclick="goBack()">&#8592;</div>
+    <div class="chat-header-info">
+      <div class="chat-header-name">🌿 Curhat Bro</div>
+      <div class="chat-header-sub">Nggak akan menghakimi kamu</div>
+    </div>
+    <div id="topic-badge" class="topic-pill" style="display:none"></div>
+    <div class="online-dot"></div>
+  </div>
+
+  <div id="messages"></div>
+
+  <div id="input-bar">
+    <div class="input-wrap">
+      <textarea id="inp" rows="1" placeholder="Cerita aja dulu..."></textarea>
+      <button id="send-btn" onclick="sendMsg()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+    <div class="input-hint">🔒 Tersimpan di perangkatmu saja</div>
+  </div>
+</div>
+
+<script>
+const SYSTEM_PROMPT = `Kamu adalah "Curhat Bro" — teman bicara yang hangat, empati, dan tidak menghakimi, khusus untuk para pria (suami, ayah, pekerja keras) yang jarang punya ruang untuk bercerita.
+
+Prinsip utamamu:
+- DENGARKAN dulu. Jangan buru-buru kasih solusi kecuali diminta secara eksplisit.
+- Validasi perasaan mereka — akui bahwa apa yang mereka rasakan itu valid dan wajar.
+- Gunakan bahasa santai, natural, seperti ngobrol sama teman lama yang beneran care.
+- Ajukan 1 pertanyaan lanjutan yang tulus dan dalam — bukan basa-basi. Jangan kebanyakan pertanyaan sekaligus.
+- Jaga respons tetap mengalir dan natural. Tidak terlalu panjang, tidak terlalu singkat.
+- Hindari kalimat motivasi klise seperti "kamu pasti bisa!", "tetap semangat ya!" — lebih ke yang genuine.
+- Sesekali gunakan humor ringan yang pas jika situasi memungkinkan.
+- Kalau ada tanda-tanda serius (putus asa berat, niat menyakiti diri), arahkan dengan lembut dan penuh kasih ke profesional atau hotline kesehatan jiwa.
+- Hargai keberanian mereka untuk membuka diri — banyak pria tidak terbiasa bercerita.
+- Jangan pernah bilang "sebagai AI" atau keluar dari karakter. Tetap jadi teman yang hadir sepenuhnya.
+- Gunakan bahasa Indonesia yang natural dan hangat.`;
+
+let msgs = [];
+let busy = false;
+let currentTopic = null;
+
+// Load history from localStorage
+function loadHistory() {
+  try {
+    const saved = localStorage.getItem('curhatbro_msgs');
+    if (saved) msgs = JSON.parse(saved);
+  } catch(e) { msgs = []; }
+}
+
+function saveHistory() {
+  try {
+    localStorage.setItem('curhatbro_msgs', JSON.stringify(msgs.slice(-40)));
+  } catch(e) {}
+}
+
+function loadTopic() {
+  try {
+    const t = localStorage.getItem('curhatbro_topic');
+    if (t) {
+      const parsed = JSON.parse(t);
+      currentTopic = parsed;
+      const badge = document.getElementById('topic-badge');
+      badge.textContent = parsed.icon + ' ' + parsed.name;
+      badge.style.display = 'inline-block';
+    }
+  } catch(e) {}
+}
+
+function saveTopic(topic) {
+  try {
+    localStorage.setItem('curhatbro_topic', JSON.stringify(topic));
+  } catch(e) {}
+}
+
+// Landing → Chat
+function startChat() {
+  document.getElementById('topic-overlay').classList.add('active');
+}
+
+function startWithTopic(icon, name, desc) {
+  currentTopic = { icon, name, desc };
+  saveTopic(currentTopic);
+  openChatPage();
+}
+
+function selectTopic(el, icon, name) {
+  document.querySelectorAll('.sheet-topic').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  currentTopic = { icon, name };
+  saveTopic(currentTopic);
+  setTimeout(() => {
+    document.getElementById('topic-overlay').classList.remove('active');
+    openChatPage();
+  }, 200);
+}
+
+function skipTopic() {
+  document.getElementById('topic-overlay').classList.remove('active');
+  openChatPage();
+}
+
+function openChatPage() {
+  document.getElementById('landing').style.display = 'none';
+  const cp = document.getElementById('chat-page');
+  cp.classList.add('active');
+
+  if (currentTopic) {
+    const badge = document.getElementById('topic-badge');
+    badge.textContent = currentTopic.icon + ' ' + currentTopic.name;
+    badge.style.display = 'inline-block';
+  }
+
+  loadHistory();
+  renderHistory();
+
+  if (msgs.length === 0) showGreeting();
+
+  document.getElementById('inp').focus();
+}
+
+function goBack() {
+  document.getElementById('chat-page').classList.remove('active');
+  document.getElementById('landing').style.display = 'flex';
+}
+
+function renderHistory() {
+  const box = document.getElementById('messages');
+  box.innerHTML = '';
+  if (msgs.length > 0) {
+    const sep = document.createElement('div');
+    sep.className = 'date-sep';
+    sep.textContent = 'Percakapan sebelumnya';
+    box.appendChild(sep);
+  }
+  msgs.forEach(m => {
+    renderBubble(m.role === 'user' ? 'user' : 'ai', m.content, false);
+  });
+  box.scrollTop = box.scrollHeight;
+}
+
+function showGreeting() {
+  const topicLine = currentTopic
+    ? `soal <strong>${currentTopic.icon} ${currentTopic.name}</strong>`
+    : 'apapun yang ada di pikiran';
+  const greetings = [
+    `Hei bro, seneng kamu mau mampir ke sini. Mau cerita ${topicLine}? Santai aja, nggak ada yang buru-buru di sini.`,
+    `Yo, apa kabar? Berani banget kamu mau cerita — banyak yang nggak bisa lakuin itu. Mau mulai dari mana soal ${topicLine}?`,
+    `Hei. Kalau ada yang lagi berat, ini tempatnya. Cerita aja ${topicLine} — aku dengerin.`
+  ];
+  const text = greetings[Math.floor(Math.random() * greetings.length)];
+  renderBubble('ai', text, true);
+}
+
+function renderBubble(role, text, animate) {
+  const box = document.getElementById('messages');
+  const wrap = document.createElement('div');
+  wrap.className = 'msg ' + role;
+  if (!animate) wrap.style.animation = 'none';
+
+  const av = document.createElement('div');
+  av.className = 'av ' + (role === 'ai' ? 'ai' : 'usr');
+  av.textContent = role === 'ai' ? '🌿' : 'K';
+
+  const bub = document.createElement('div');
+  bub.className = 'bubble';
+  bub.innerHTML = text.replace(/\n/g, '<br>');
+
+  wrap.appendChild(av);
+  wrap.appendChild(bub);
+  box.appendChild(wrap);
+  box.scrollTop = box.scrollHeight;
+  return bub;
+}
+
+function showTyping() {
+  const box = document.getElementById('messages');
+  const wrap = document.createElement('div');
+  wrap.className = 'msg ai'; wrap.id = 'typing-ind';
+  const av = document.createElement('div');
+  av.className = 'av ai'; av.textContent = '🌿';
+  const bub = document.createElement('div');
+  bub.className = 'bubble typing-bub';
+  bub.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  wrap.appendChild(av); wrap.appendChild(bub);
+  box.appendChild(wrap);
+  box.scrollTop = box.scrollHeight;
+}
+
+function removeTyping() {
+  const el = document.getElementById('typing-ind');
+  if (el) el.remove();
+}
+
+const inp = document.getElementById('inp');
+inp.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 100) + 'px';
+});
+inp.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMsg(); }
+});
+
+async function sendMsg() {
+  const text = inp.value.trim();
+  if (!text || busy) return;
+  busy = true;
+  document.getElementById('send-btn').disabled = true;
+  inp.value = ''; inp.style.height = 'auto';
+
+  msgs.push({ role: 'user', content: text });
+  saveHistory();
+  renderBubble('user', text, true);
+  showTyping();
+
+  const systemFull = currentTopic
+    ? SYSTEM_PROMPT + `\n\nTopik sesi ini: ${currentTopic.icon} ${currentTopic.name}. Fokuskan percakapan pada topik ini tapi tetap fleksibel jika user ingin cerita hal lain.`
+    : SYSTEM_PROMPT;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemFull,
+        messages: msgs
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Maaf, ada gangguan sebentar. Coba lagi ya.';
+    msgs.push({ role: 'assistant', content: reply });
+    saveHistory();
+    removeTyping();
+    renderBubble('ai', reply, true);
+  } catch(e) {
+    removeTyping();
+    renderBubble('ai', 'Koneksi terputus sebentar. Aku masih di sini — coba lagi ya.', true);
+  }
+
+  busy = false;
+  document.getElementById('send-btn').disabled = false;
+  inp.focus();
+}
+
+// Init
+loadTopic();
+</script>
+</body>
+</html>
